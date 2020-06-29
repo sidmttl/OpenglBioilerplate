@@ -13,9 +13,9 @@ void SceneTriangle::initScene()
 
 	glEnable(GL_DEPTH_TEST);
 
-    view = glm::lookAt(vec3(0.0f, 0.0f, 13.0f), vec3(0.0f, 0.0f, 0.0f), vec3(0.0f, 1.0f, 0.0f));
+    view = glm::lookAt(vec3(0.0f, 0.0f, 5.0f), vec3(0.0f, 0.0f, 0.0f), vec3(0.0f, 1.0f, 0.0f));
     projection = glm::mat4(1.0f);
-    glm::vec4 worldLight = glm::vec4(3.0f, 5.0f, 2.0f, 1.0f);
+    glm::vec4 worldLight = glm::vec4(3.0f, 5.0f, 4.0f, 1.0f);
 
     prog.setUniform("Light.Ld", 1.0f, 1.0f, 1.0f);
     prog.setUniform("Light.Position", view * worldLight);

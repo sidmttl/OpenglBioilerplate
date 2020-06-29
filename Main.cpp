@@ -5,7 +5,7 @@
 int main()
 {
 	std::unique_ptr<Scene> scene;
-	SceneRunner runner("Window should open");
+	SceneRunner runner("Cube Rendered");
 	scene = std::unique_ptr<Scene>(new SceneTriangle());
 	runner.run(std::move(scene));
 }
