@@ -150,14 +150,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="glslprogram.h" />
-    <ClInclude Include="scene.h" />
-    <ClInclude Include="scenerunner.h" />
-    <ClInclude Include="scenecube.h" />
-    <ClInclude Include="cube.h" />
-    <ClInclude Include="trianglemesh.h" />
+    <ClInclude Include="headers\glslprogram.h" />
+    <ClInclude Include="headers\camera.h" />
+    <ClInclude Include="headers\scene.h" />
+    <ClInclude Include="headers\scenerunner.h" />
+    <ClInclude Include="headers\scenecube.h" />
+    <ClInclude Include="headers\cube.h" />
+    <ClInclude Include="headers\trianglemesh.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Camera.cpp" />
     <ClCompile Include="glslprogram.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="scenecube.cpp" />
@@ -165,8 +167,8 @@
     <ClCompile Include="trainglemesh.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="tri.frag.glsl" />
-    <None Include="tri.vert.glsl" />
+    <None Include="shaders\tri.frag.glsl" />
+    <None Include="shaders\tri.vert.glsl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

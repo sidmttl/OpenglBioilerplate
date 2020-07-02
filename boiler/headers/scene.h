@@ -28,6 +28,12 @@ public:
 	//drawing the scene
 	virtual void render() = 0;
 
+	//keyhandle of scene
+	virtual void keyHandle(char key) = 0;
+
+	//mousehandle of scene
+	virtual void mouseHandle(float pitch, float yaw) = 0;
+
 	//resize
 	virtual void resize(int, int) = 0;
 

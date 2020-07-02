@@ -5,21 +5,25 @@
 #include <glad/glad.h>
 #include "cube.h"
 #include <glm/gtc/matrix_transform.hpp>
+#include"camera.h"
 
-class SceneTriangle : public Scene 
+
+class SceneCube : public Scene 
 {
 private:
 	GLSLProgram prog;
-	Cube cube{ "cube.obj" };
-
+	Cube cube{ "./resources/cube.obj" };
+	Camera camera;
 	void setMatrices();
 	void compileAndLinkShader();
 
 public:
-	SceneTriangle();
+	SceneCube();
 
 	void initScene();
 	void update(float t);
 	void render();
 	void resize(int,int);
+	void keyHandle(char key);
+	void mouseHandle(float pitch, float yaw);
 };
