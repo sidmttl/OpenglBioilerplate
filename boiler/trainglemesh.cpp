@@ -1,47 +1,48 @@
-#include"trianglemesh.h"
+#include "trianglemesh.h"
 
-void TriangleMesh::initBuffers(
-	std::vector<GLuint>* indices,
-	std::vector<GLfloat>* points,
-	std::vector<GLfloat>* normals,
-	std::vector<GLfloat>* texCoords,
-	std::vector<GLfloat>* tangents
-){
-	if (!buffers.empty()) deleteBuffers();
-	if (indices == nullptr || points == nullptr || normals == nullptr)
-		return;
+void TriangleMesh::initBuffers(std::vector<GLuint>* indices,
+                               std::vector<GLfloat>* points,
+                               std::vector<GLfloat>* normals,
+                               std::vector<GLfloat>* texCoords,
+                               std::vector<GLfloat>* tangents) {
+    if (!buffers.empty()) deleteBuffers();
+    if (indices == nullptr || points == nullptr || normals == nullptr) return;
 
-	nVerts = (GLuint)indices->size();
-	GLuint	indexBuf = 0, posBuf = 0, normBuf = 0, tcBuf = 0, tangentBuf = 0;
-	glGenBuffers(1, &indexBuf);
+    nVerts = (GLuint)indices->size();
+    GLuint indexBuf = 0, posBuf = 0, normBuf = 0, tcBuf = 0, tangentBuf = 0;
+    glGenBuffers(1, &indexBuf);
     buffers.push_back(indexBuf);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBuf);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices->size() * sizeof(GLuint), indices->data(), GL_STATIC_DRAW);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices->size() * sizeof(GLuint),
+                 indices->data(), GL_STATIC_DRAW);
 
     glGenBuffers(1, &posBuf);
     buffers.push_back(posBuf);
     glBindBuffer(GL_ARRAY_BUFFER, posBuf);
-    glBufferData(GL_ARRAY_BUFFER, points->size() * sizeof(GLfloat), points->data(), GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, points->size() * sizeof(GLfloat),
+                 points->data(), GL_STATIC_DRAW);
 
     glGenBuffers(1, &normBuf);
     buffers.push_back(normBuf);
     glBindBuffer(GL_ARRAY_BUFFER, normBuf);
-    glBufferData(GL_ARRAY_BUFFER, normals->size() * sizeof(GLfloat), normals->data(), GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, normals->size() * sizeof(GLfloat),
+                 normals->data(), GL_STATIC_DRAW);
 
     if (texCoords != nullptr) {
         glGenBuffers(1, &tcBuf);
         buffers.push_back(tcBuf);
         glBindBuffer(GL_ARRAY_BUFFER, tcBuf);
-        glBufferData(GL_ARRAY_BUFFER, texCoords->size() * sizeof(GLfloat), texCoords->data(), GL_STATIC_DRAW);
+        glBufferData(GL_ARRAY_BUFFER, texCoords->size() * sizeof(GLfloat),
+                     texCoords->data(), GL_STATIC_DRAW);
     }
 
     if (tangents != nullptr) {
         glGenBuffers(1, &tangentBuf);
         buffers.push_back(tangentBuf);
         glBindBuffer(GL_ARRAY_BUFFER, tangentBuf);
-        glBufferData(GL_ARRAY_BUFFER, tangents->size() * sizeof(GLfloat), tangents->data(), GL_STATIC_DRAW);
+        glBufferData(GL_ARRAY_BUFFER, tangents->size() * sizeof(GLfloat),
+                     tangents->data(), GL_STATIC_DRAW);
     }
-
 
     glGenVertexArrays(1, &vao);
     glBindVertexArray(vao);
@@ -79,9 +80,7 @@ void TriangleMesh::render() const {
     glBindVertexArray(0);
 }
 
-TriangleMesh::~TriangleMesh() {
-    deleteBuffers();
-}
+TriangleMesh::~TriangleMesh() { deleteBuffers(); }
 
 void TriangleMesh::deleteBuffers() {
     if (buffers.size() > 0) {
